@@ -1,0 +1,6 @@
+{
+    "env": {
+        "JWTKEY": "segredo",
+        "DATABASE_URL": "postgres://uzkrifhyfuynru:7ae68169aa2c1665db6001a2b26c7d54f4b9a0f1e4fb782622aaf1ba2c136f58@ec2-54-204-56-171.compute-1.amazonaws.com:5432 ddmu666c1rg0uu"
+    }
+}
