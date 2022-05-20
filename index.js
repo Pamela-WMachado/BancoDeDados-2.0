@@ -210,9 +210,9 @@ app.post('/cadprodutos', (req, res) => {
                 return res.status(200).send('Produto cadastrado')
             }
 
-             var sql = 'INSERT INTO produtos(categoria, preco, foto) VALUES ($1, $2, $3)'
+             var sql = 'INSERT INTO produtos(categoria, preco, foto, descricao) VALUES ($1, $2, $3, $4)'
 
-            product.query(sql,[req.body.categoria, req.body.preco, req.body.foto], (error, result) => {
+            product.query(sql,[req.body.categoria, req.body.preco, req.body.foto, req.body.descricao], (error, result) => {
                 if (error) {
                     return res.status(403).send('Operação não permitida')
             }
@@ -289,10 +289,10 @@ app.put('/cadprodutos/:id', (req, res) => {
                 return res.status(401).send('Operação não permitida')
             }
 
-            //update produtos set  categoria=$1, preco=$2, foto=$3 where id=$4
+            //update produtos set  categoria=$1, preco=$2, foto=$3, descricao=$4 where id=$5
             if (result.rowCount > 0) {
-                var sql = 'update produtos set  categoria=$1, preco=$2, foto=$3 where id=$4'
-                let valores = [req.body.categoria, req.body.preco, req.body.foto, req.params.id]
+                var sql = 'update produtos set  categoria=$1, preco=$2, foto=$3, descricao=$4 where id=$5'
+                let valores = [req.body.categoria, req.body.preco, req.body.foto, req.body.drescricao, req.params.id]
                 
                 product.query(sql, valores, (error2, result2) =>{
                     if(error2) {
