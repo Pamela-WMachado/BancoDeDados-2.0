@@ -45,8 +45,8 @@ app.post('/cadusuarios', (req, res) => {
                         erro: error.message
                     })
                 }
-                var sql = 'INSERT INTO usuarios (nome, email, senha, cpf, fone, cep, pais, estado, cidade, bairro, rua, numero, complemento, perfil) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)';
-                var valores = [req.body.nome, req.body.email, hash, req.body.cpf, req.body.fone, req.body.cep, req.body.pais, req.body.estado, req.body.cidade, req.body.bairro, req.body.rua, req.body.numero, req.body.complemento, req.body.perfil];
+                var sql = 'INSERT INTO usuarios (nome, email, senha, cpf, fone, cep, estado, cidade, bairro, rua, numero, complemento, perfil) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)';
+                var valores = [req.body.nome, req.body.email, hash, req.body.cpf, req.body.fone, req.body.cep, req.body.estado, req.body.cidade, req.body.bairro, req.body.rua, req.body.numero, req.body.complemento, req.body.perfil];
 
                 client.query(sql, valores, (error, result) => {
                     if (error) {
@@ -111,8 +111,8 @@ app.put('/usuarios/:id', (req, res) => {
 
             //update usuarios set nome=$1, email =$2, senha=$3, cpf=$4, fone=$5, cep=$6, pais=$7, estado=$8, cidade=$9, bairro=$10, rua=$11, numero=$12, complemento=$13, perfil=$14
             if (result.rowCount > 0) {
-                var sql = 'update usuarios set nome=$1, email =$2, senha=$3, cpf=$4, fone=$5, cep=$6, pais=$7, estado=$8, cidade=$9, bairro=$10, rua=$11, numero=$12, complemento=$13, perfil=$14 where id=$15'
-                let valores = [req.body.nome, req.body.email, req.body.senha, req.body.cpf, req.body.fone, req.body.cep, req.body.pais, req.body.estado, req.body.cidade, req.body.bairro, req.body.rua, req.body.numero, req.body.complemento, req.body.perfil, req.params.id];
+                var sql = 'update usuarios set nome=$1, email =$2, senha=$3, cpf=$4, fone=$5, cep=$6, estado=$7, cidade=$9, bairro=$10, rua=$11, numero=$12, complemento=$13, perfil=$14 where id=$15'
+                let valores = [req.body.nome, req.body.email, req.body.senha, req.body.cpf, req.body.fone, req.body.cep, req.body.estado, req.body.cidade, req.body.bairro, req.body.rua, req.body.numero, req.body.complemento, req.body.perfil, req.params.id];
 
                 client.query(sql, valores, (error2, result2) => {
                     if (error2) {
@@ -203,6 +203,7 @@ app.post('/cadprodutos', (req, res) => {
         
         product.query('select * from produtos where id = $1', [req.body.id], (error,result) =>{
             if (error) {
+                console.log(err)
                 return res.status(401).send('Operação não autorizada')
             }
 
