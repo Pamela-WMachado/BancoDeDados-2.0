@@ -3,6 +3,8 @@ const app = express();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const pg = require('pg');
+const bodyparser = require('body-parser');
+const cors = require('cors');
 
 app.use(express.urlencoded({ extended: false })); 
 app.use(express.json());
@@ -203,7 +205,7 @@ app.post('/cadprodutos', (req, res) => {
         
         product.query('select * from produtos where id = $1', [req.body.id], (error,result) =>{
             if (error) {
-                console.log(err)
+                console.log(err) 
                 return res.status(401).send('Operação não autorizada')
             }
 
